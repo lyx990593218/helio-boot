@@ -1,4 +1,4 @@
-package cc.uncarbon.module.sys.controller;
+package cc.uncarbon.module.sys.web.sys;
 
 import cc.uncarbon.framework.core.constant.HelioConstant;
 import cc.uncarbon.framework.core.page.PageParam;
@@ -15,16 +15,17 @@ import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 
 /**
  * @author Uncarbon
  */
+@RequiredArgsConstructor
 @SaCheckLogin(type = AdminStpUtil.TYPE)
 @Slf4j
 @Api(value = "系统参数管理接口", tags = {"系统参数管理接口"})
@@ -33,9 +34,8 @@ import javax.validation.Valid;
 public class AdminSysParamController {
 
     private static final String PERMISSION_PREFIX = "SysParam:";
-    
-    @Resource
-    private SysParamService sysParamService;
+
+    private final SysParamService sysParamService;
 
 
     @SaCheckPermission(type = AdminStpUtil.TYPE, value = PERMISSION_PREFIX + HelioConstant.Permission.RETRIEVE)
@@ -49,7 +49,7 @@ public class AdminSysParamController {
     @ApiOperation(value = "详情", produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "/{id}")
     public ApiResult<SysParamBO> getById(@PathVariable Long id) {
-        return ApiResult.data(sysParamService.getOneById(id));
+        return ApiResult.data(sysParamService.getOneById(id, true));
     }
 
     @SaCheckPermission(type = AdminStpUtil.TYPE, value = PERMISSION_PREFIX + HelioConstant.Permission.CREATE)

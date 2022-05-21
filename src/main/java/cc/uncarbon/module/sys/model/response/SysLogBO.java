@@ -30,7 +30,7 @@ public class SysLogBO implements Serializable {
 
     @ApiModelProperty(value = "创建时刻")
     @DateTimeFormat(pattern = HelioConstant.Jackson.DATE_TIME_FORMAT)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = HelioConstant.Jackson.DATE_TIME_FORMAT, timezone = HelioConstant.Jackson.TIME_ZONE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = HelioConstant.Jackson.DATE_TIME_FORMAT)
     private LocalDateTime createdAt;
 
     @ApiModelProperty(value = "用户账号")
@@ -42,7 +42,7 @@ public class SysLogBO implements Serializable {
     @ApiModelProperty(value = "IP地址")
     private String ip;
 
-    @ApiModelProperty(value = "状态(0=未执行 1=成功)")
+    @ApiModelProperty(value = "状态")
     private SysLogStatusEnum status;
 
 }

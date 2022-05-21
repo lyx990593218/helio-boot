@@ -19,12 +19,20 @@ import lombok.experimental.SuperBuilder;
  */
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@SuperBuilder(toBuilder = true)
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @TableName(value = "sys_dept")
 public class SysDeptEntity extends HelioBaseEntity<Long> {
+
+	/**
+	 * 乐观锁
+	 * 需自行加@Version注解才有效
+	 */
+	@ApiModelProperty(value = "乐观锁", notes = "需再次复制本字段，并自行加 @Version 注解才有效")
+	@TableField(value = "revision", exist = false)
+	private Long revision;
 
 	@ApiModelProperty(value = "名称")
 	@TableField(value = "title")
@@ -38,7 +46,7 @@ public class SysDeptEntity extends HelioBaseEntity<Long> {
 	@TableField(value = "sort")
 	private Integer sort;
 
-	@ApiModelProperty(value = "状态(0=禁用 1=启用)")
+	@ApiModelProperty(value = "状态")
 	@TableField(value = "status")
 	private GenericStatusEnum status;
 

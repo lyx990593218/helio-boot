@@ -1,6 +1,6 @@
 package cc.uncarbon.module.sys.entity;
 
-import cc.uncarbon.framework.crud.entity.HelioBaseEntity;
+import cc.uncarbon.framework.crud.entity.HelioNoTenantBaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModelProperty;
@@ -18,12 +18,12 @@ import lombok.experimental.SuperBuilder;
  */
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-@SuperBuilder(toBuilder = true)
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @TableName(value = "sys_user_role_relation")
-public class SysUserRoleRelationEntity extends HelioBaseEntity<Long> {
+public class SysUserRoleRelationEntity extends HelioNoTenantBaseEntity<Long> {
 
 	@ApiModelProperty(value = "用户ID")
 	@TableField(value = "user_id")
